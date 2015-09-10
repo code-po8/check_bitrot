@@ -41,7 +41,8 @@ def determineFileChecksum(filename, hashingMethod, blocksize=DEFAULT_BLOCKSIZE):
 	    Example call would be:
 	        determineFileChecksum('/home/user/file.txt',hashlib.md5())
 	"""
-
+	
+	#read in the file, block by block, and generate a checksum
 	fileHandle = open(filename, FILE_OPEN_READONLY_BINARY)
 	fileBuffer = fileHandle.read(blocksize)
 	while(len(fileBuffer) > 0):
@@ -52,7 +53,7 @@ def determineFileChecksum(filename, hashingMethod, blocksize=DEFAULT_BLOCKSIZE):
 def getChecksum(checksumFilename):
 	""" returns a checksum from a file """
 
-	#raise NotImplemented('error: getChecksum() method not complete')
+	#open the saved checksum file and return its contents
 	checksumFileHandle = open(checksumFilename,FILE_OPEN_READONLY)
 	existingChecksum = checksumFileHandle.read().strip()
 	checksumFileHandle.close()
@@ -61,7 +62,7 @@ def getChecksum(checksumFilename):
 def saveChecksum(checksumFilename,checksum):
 	""" saves a checksum file """
 
-	#raise NotImplemented('error: saveChecksum() method not complete')
+	#save the specified checksum to the specified checksum file
 	checksumFileHandle = open(checksumFilename,FILE_OPEN_WRITE)
 	checksumFileHandle.write(checksum)
 	checksumFileHandle.close()
